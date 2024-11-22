@@ -3,7 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { CsvHomeComponent } from './protected/csv-home/csv-home.component';
-import { AuthGuard } from './components/register/guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', title: `Home`, component: HomeComponent  },
