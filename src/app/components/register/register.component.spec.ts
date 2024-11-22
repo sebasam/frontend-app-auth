@@ -28,4 +28,8 @@ describe('Estos son los test del register component', () => {
 
         fixture.detectChanges()
     })
+
+    it('Deberia crear el componente correctamente', () => {
+        expect(component).toBeTruthy()
+    })
 })
