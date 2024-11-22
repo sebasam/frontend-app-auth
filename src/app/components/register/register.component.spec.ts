@@ -32,4 +32,20 @@ describe('Estos son los test del register component', () => {
     it('Deberia crear el componente correctamente', () => {
         expect(component).toBeTruthy()
     })
+
+    it("debería registtrar al user en el metodo onSubmit", () => {
+        //Arrange
+        component.email = 'text@example.com'
+        component.password = '#Clave1234'
+        const mockResponse = {
+            ok: true,
+            msg: 'User registered!!'
+        }
+        authServiceSpy.register.and.returnValue(of(mockResponse))
+        //Action
+        component.onSubmit(new Event('submit'))
+        //Assert
+        expect(Swal.isVisible()).toBeTrue()
+        expect(authServiceSpy.register).toHaveBeenCalledWith('text@example.com', '#Clave1234')
+    })
 })
