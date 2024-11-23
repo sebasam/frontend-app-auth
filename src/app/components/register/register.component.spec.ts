@@ -47,5 +47,21 @@ describe('Estos son los test del register component', () => {
         //Assert
         expect(Swal.isVisible()).toBeTrue()
         expect(authServiceSpy.register).toHaveBeenCalledWith('text@example.com', '#Clave1234')
+        expect(routerSpy.navigate).toHaveBeenCalledWith(['/login'])
+    })
+
+    it('debria manejar un error en el register', () => {
+        //Arrange
+        const errorResponse = { 
+            error: {
+                msg: 'Email is already in use'
+            }
+        }
+        authServiceSpy.register.and.returnValue(throwError(errorResponse))
+        //Action
+        component.onSubmit(new Event('submit'))
+        //Assert
+        expect(Swal.isVisible()).toBeTrue()
+        expect(Swal.getTitle()?.textContent).toBe('Ups!! error')
     })
 })
